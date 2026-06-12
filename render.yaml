@@ -1,0 +1,17 @@
+# One-click deploy to Render (https://render.com).
+# 1. Push this repo to GitHub.
+# 2. In Render: New > Blueprint, point it at this repo.
+# 3. Render builds the Dockerfile and gives you a public https URL.
+# 4. Open that URL on your iPad, paste your Anthropic key in Settings, and go.
+#
+# No secrets are configured here — the API key is entered in the web UI and
+# stored only in the user's browser.
+services:
+  - type: web
+    name: company-voice-blog-generator
+    runtime: docker
+    plan: free
+    branch: claude/company-voice-blog-generator-cpi0j8
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    autoDeploy: true
