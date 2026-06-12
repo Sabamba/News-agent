@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Company Voice Blog Generator</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Company Voice <span>Blog Generator</span></h1>
+    <span id="keyStatus" class="key-status">No API key</span>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="collect" class="active">1 · Collect</button>
+    <button data-tab="voice">2 · Voice</button>
+    <button data-tab="ask">3 · Ask &amp; Ideas</button>
+    <button data-tab="posts">4 · Blog Posts</button>
+    <button data-tab="settings">Settings</button>
+  </nav>
+
+  <main>
+    <!-- 1. COLLECT -->
+    <section id="tab-collect" class="tab active">
+      <h2>Collect data from websites</h2>
+      <p class="hint">Paste one or more URLs (one per line). The pages are read and saved as research you can draw on when asking questions or writing posts.</p>
+      <textarea id="collectUrls" rows="5" placeholder="https://example.com/article&#10;https://another-site.com/post"></textarea>
+      <button id="collectBtn" class="primary">Collect pages</button>
+      <div id="collectMsg" class="msg"></div>
+      <h3>Saved sources</h3>
+      <div id="sourceList" class="list"></div>
+    </section>
+
+    <!-- 2. VOICE -->
+    <section id="tab-voice" class="tab">
+      <h2>Understand your company voice</h2>
+      <p class="hint">Enter your company website. We read its pages and build a voice &amp; style guide that all generated content will follow.</p>
+      <div class="row">
+        <input id="voiceUrl" type="text" placeholder="https://yourcompany.com" />
+        <input id="voicePages" type="number" min="1" max="40" value="15" title="Max pages to read" />
+        <button id="voiceBtn" class="primary">Analyze voice</button>
+      </div>
+      <div id="voiceMsg" class="msg"></div>
+      <div id="voiceProfile" class="markdown card"></div>
+    </section>
+
+    <!-- 3. ASK -->
+    <section id="tab-ask" class="tab">
+      <h2>Ask &amp; brainstorm</h2>
+      <p class="hint">Ask anything — e.g. <em>"Generate 10 ideas for blog posts"</em>. Answers use your voice guide and collected research.</p>
+      <div class="chips">
+        <button class="chip" data-q="Generate 10 ideas for blog posts.">10 blog post ideas</button>
+        <button class="chip" data-q="Suggest 5 LinkedIn post ideas in our voice.">5 LinkedIn ideas</button>
+        <button class="chip" data-q="What topics should we write about given our research?">Topic suggestions</button>
+      </div>
+      <textarea id="askInput" rows="3" placeholder="Generate 10 ideas for blog posts..."></textarea>
+      <button id="askBtn" class="primary">Ask</button>
+      <div id="askMsg" class="msg"></div>
+      <div id="askAnswer" class="markdown card"></div>
+    </section>
+
+    <!-- 4. POSTS -->
+    <section id="tab-posts" class="tab">
+      <h2>Blog posts</h2>
+      <p class="hint">Generate a full post from an idea, then give feedback to refine it.</p>
+      <textarea id="postBrief" rows="3" placeholder="Topic or idea for a blog post (you can paste one of the ideas from the Ask tab)"></textarea>
+      <button id="generateBtn" class="primary">Generate blog post</button>
+      <div id="postMsg" class="msg"></div>
+
+      <div class="posts-layout">
+        <div id="postList" class="list post-list"></div>
+        <div id="postDetail" class="post-detail"></div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="tab-settings" class="tab">
+      <h2>Settings</h2>
+      <p class="hint">Your Anthropic API key is stored only in this browser and sent directly with each request. It is never saved on the server.</p>
+      <label for="apiKey">Anthropic API key</label>
+      <div class="row">
+        <input id="apiKey" type="password" placeholder="sk-ant-..." />
+        <button id="saveKeyBtn" class="primary">Save</button>
+      </div>
+      <p class="hint">Get a key at <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>. The app uses Claude Opus 4.8.</p>
+      <div id="keyMsg" class="msg"></div>
+    </section>
+  </main>
+
+  <div id="spinner" class="spinner hidden"><div class="dot"></div> Working…</div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
