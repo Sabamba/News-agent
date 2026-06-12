@@ -11,6 +11,7 @@ services:
     name: company-voice-blog-generator
     runtime: docker
     plan: free
+    branch: claude/company-voice-blog-generator-cpi0j8
     dockerfilePath: ./Dockerfile
     healthCheckPath: /
     autoDeploy: true
