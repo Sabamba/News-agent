@@ -1,0 +1,8 @@
+# Exported lead/contact data (contains PII — never commit)
+aeye_web_leads_*.csv
+*_leads_*.csv
+aeye_health_posts.json
+
+# Python
+__pycache__/
+*.pyc
