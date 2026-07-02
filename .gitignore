@@ -3,6 +3,7 @@ aeye_web_leads_*.csv
 *_leads_*.csv
 *_deals_*.csv
 all_reps_*.csv
+*_funnel_*.csv
 aeye_health_posts.json
 
 # Locally generated report artifacts
